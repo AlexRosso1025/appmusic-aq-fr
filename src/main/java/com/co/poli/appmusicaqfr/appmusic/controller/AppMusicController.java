@@ -4,10 +4,7 @@ import com.co.poli.appmusicaqfr.appmusic.model.ReproductionList;
 import com.co.poli.appmusicaqfr.appmusic.services.IAppMusicService;
 import com.co.poli.appmusicaqfr.appmusic.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -24,6 +21,11 @@ public class AppMusicController {
     @GetMapping("/lists")
     public ArrayList<ReproductionList> getLists(){
         return appMusicService.getAllReproductionLists();
+    }
+
+    @GetMapping("/lists/{name}")
+    public Response getListDescription(@PathVariable(value="name") String listName) {
+        return appMusicService.getDescription(listName);
     }
 
 }
