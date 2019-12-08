@@ -9,5 +9,6 @@ public interface IAppMusicService {
     Response save(ReproductionList reproductionList);
     ArrayList<ReproductionList> getAllReproductionLists();
     Response getDescription(String listName);
+    Response modifyReproductionList(String listName,ReproductionList reproductionList);
     Response deleteReproductionList(String listName);
 }

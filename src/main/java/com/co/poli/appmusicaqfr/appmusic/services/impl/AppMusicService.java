@@ -61,12 +61,46 @@ public class AppMusicService implements IAppMusicService {
                     _description=list.getDescription();
                     response.setState(true);
                     response.setMessage("Ok");
-                    response.setMessageBody(_listName+" "+_description);
+                    response.setMessageBody(_description);
                 }else{
                     response.setState(false);
                     response.setCodeMessage(404);
                     response.setMessage("Not Found");
                 }
+            }
+        }
+        return response;
+    }
+
+    @Override
+    @Transactional
+    public Response modifyReproductionList(String listName, ReproductionList reproductionList) {
+        String _listName;
+        String _listDescription;
+        boolean band=false;
+        Response response = new Response();
+        for(ReproductionList list: appMusicDao.findAll()){
+            _listName=list.getName();
+            if(_listName.equals(listName)){
+                band=true;
+                if(band){
+                    if(_listName.equals(list.getName()) && _listName.equals(reproductionList.getName())){
+                        _listDescription=reproductionList.getDescription();
+                        list.setDescription(_listDescription);
+                        response.setState(true);
+                        response.setCodeMessage(204);
+                        response.setMessage("No content");
+                        response.setMessageBody(appMusicDao.save(reproductionList));
+                    }else{
+                        response.setState(false);
+                        response.setCodeMessage(409);
+                        response.setMessage("Conflit");
+                    }
+                }
+            }else{
+                response.setState(false);
+                response.setCodeMessage(404);
+                response.setMessage("Not Found");
             }
         }
         return response;

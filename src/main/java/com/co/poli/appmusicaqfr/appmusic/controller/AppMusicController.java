@@ -28,6 +28,11 @@ public class AppMusicController {
         return appMusicService.getDescription(listName);
     }
 
+    @PutMapping("lists/{name}")
+    public Response modifyReproductionList(@PathVariable(value = "name") String listName, @RequestBody ReproductionList reproductionList){
+        return appMusicService.modifyReproductionList(listName,reproductionList);
+    }
+
     @DeleteMapping("lists/{name}")
     public Response deleteReproductionList(@PathVariable(value = "name") String listName){
         return appMusicService.deleteReproductionList(listName);
