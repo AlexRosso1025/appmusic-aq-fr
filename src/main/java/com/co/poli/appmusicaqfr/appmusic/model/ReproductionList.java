@@ -1,8 +1,13 @@
 package com.co.poli.appmusicaqfr.appmusic.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReproductionList {
+@Entity
+@Table(name= "song")
+public class ReproductionList implements Serializable {
+    @Id
     private String name;
     private String description;
     private ArrayList<Song> songs;

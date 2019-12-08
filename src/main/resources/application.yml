@@ -1,7 +1,7 @@
 server:
   port: 9080
   servlet:
-    context-path: /appmusic-aq-fr
+    context-path: /appmusic
 
 spring:
   datasource:

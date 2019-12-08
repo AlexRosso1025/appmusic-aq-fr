@@ -1,6 +1,7 @@
 package com.co.poli.appmusicaqfr.appmusic.model;
+import java.io.Serializable;
 
-public class Song {
+public class Song implements Serializable {
     private String title;
     private String artist;
     private String album;

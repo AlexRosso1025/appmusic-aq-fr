@@ -9,6 +9,7 @@ public class Response {
     public Response() {
         this.codeMessage = 200;
     }
+
     public Object getMessageBody() {
         return messageBody;
     }
