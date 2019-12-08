@@ -46,25 +46,52 @@ public class AppMusicService implements IAppMusicService {
     }
 
     @Override
+    @Transactional
     public Response getDescription(String listName) {
         Response response = new Response();
         String _listName;
         String _description;
         boolean band=false;
-        ArrayList<ReproductionList> reproductionLists = new ArrayList<>();
         for(ReproductionList list: appMusicDao.findAll()){
             _listName=list.getName();
             if(_listName.equals(listName)){
                 band=true;
+                if(band){
+                    _listName=list.getName();
+                    _description=list.getDescription();
+                    response.setState(true);
+                    response.setMessage("Ok");
+                    response.setMessageBody(_listName+" "+_description);
+                }else{
+                    response.setState(false);
+                    response.setCodeMessage(404);
+                    response.setMessage("Not Found");
+                }
             }
-            if(band){
-                _listName=list.getName();
-                response.setState(true);
-                response.setMessageBody(_listName);
-            }else{
-                response.setState(false);
-                response.setCodeMessage(404);
-                response.setMessage("Not Found");
+        }
+        return response;
+    }
+
+    @Override
+    @Transactional
+    public Response deleteReproductionList(String listName) {
+        String _listName;
+        boolean band=false;
+        Response response = new Response();
+        for (ReproductionList list: appMusicDao.findAll()){
+            _listName=list.getName();
+            if(_listName.equals(listName)){
+                band=true;
+                if(band){
+                    appMusicDao.deleteById(_listName);
+                    response.setState(true);
+                    response.setCodeMessage(204);
+                    response.setMessage("No content");
+                }else{
+                    response.setState(false);
+                    response.setCodeMessage(404);
+                    response.setMessage("Not Found");
+                }
             }
         }
         return response;

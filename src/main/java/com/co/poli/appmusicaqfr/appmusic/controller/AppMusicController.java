@@ -28,4 +28,9 @@ public class AppMusicController {
         return appMusicService.getDescription(listName);
     }
 
+    @DeleteMapping("lists/{name}")
+    public Response deleteReproductionList(@PathVariable(value = "name") String listName){
+        return appMusicService.deleteReproductionList(listName);
+    }
+
 }
