@@ -120,11 +120,12 @@ public class AppMusicService implements IAppMusicService {
                     response.setState(true);
                     response.setCodeMessage(204);
                     response.setMessage("No content");
-                }else{
-                    response.setState(false);
-                    response.setCodeMessage(404);
-                    response.setMessage("Not Found");
                 }
+            }
+            else{
+                response.setState(false);
+                response.setCodeMessage(404);
+                response.setMessage("Not Found");
             }
         }
         return response;
