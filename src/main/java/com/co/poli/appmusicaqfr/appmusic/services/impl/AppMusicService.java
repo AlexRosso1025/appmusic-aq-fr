@@ -57,16 +57,15 @@ public class AppMusicService implements IAppMusicService {
             if(_listName.equals(listName)){
                 band=true;
                 if(band){
-                    _listName=list.getName();
                     _description=list.getDescription();
                     response.setState(true);
                     response.setMessage("Ok");
                     response.setMessageBody(_description);
-                }else{
-                    response.setState(false);
-                    response.setCodeMessage(404);
-                    response.setMessage("Not Found");
                 }
+            }else{
+                response.setState(false);
+                response.setCodeMessage(404);
+                response.setMessage("Not Found");
             }
         }
         return response;
