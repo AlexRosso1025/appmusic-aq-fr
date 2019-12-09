@@ -59,8 +59,10 @@ public class AppMusicService implements IAppMusicService {
                 if(band){
                     _description=list.getDescription();
                     response.setState(true);
+                    response.setCodeMessage(200);
                     response.setMessage("Ok");
                     response.setMessageBody(_description);
+                    return response;
                 }
             }else{
                 response.setState(false);
@@ -90,6 +92,7 @@ public class AppMusicService implements IAppMusicService {
                         response.setCodeMessage(204);
                         response.setMessage("No content");
                         response.setMessageBody(appMusicDao.save(reproductionList));
+
                     }else{
                         response.setState(false);
                         response.setCodeMessage(409);
@@ -120,9 +123,9 @@ public class AppMusicService implements IAppMusicService {
                     response.setState(true);
                     response.setCodeMessage(204);
                     response.setMessage("No content");
+                    return response;
                 }
-            }
-            else{
+            }else{
                 response.setState(false);
                 response.setCodeMessage(404);
                 response.setMessage("Not Found");
